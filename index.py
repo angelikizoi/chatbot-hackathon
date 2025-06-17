@@ -8,9 +8,7 @@ import time
 import queue
 import json
 import sounddevice as sd
-# from vosk import Model, KaldiRecognizer
-from assistant_service import upload_image
-from utilities_service import remove_image, download_image
+
 
 app = Flask(__name__)
 
@@ -32,41 +30,8 @@ def get_db_connection():
         database=os.getenv("MYSQL_DATABASE")
     )
 
-# # Load Vosk for real-time STT
-# vosk_model_path = "D:\\vosk-model-en-us-0.22"
-# vosk_model = Model(vosk_model_path)
-# audio_q = queue.Queue()
-
-# def audio_callback(indata, frames, time, status):
-#     """Vosk Callback function to store real-time audio data"""
-#     if status:
-#         print(status, flush=True)
-#     audio_q.put(bytes(indata))
-
-# def real_time_stt():
-#     """Perform real-time STT if speech duration is short"""
-#     recognizer = KaldiRecognizer(vosk_model, 16000)
-#     with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype='int16',
-#                            channels=1, callback=audio_callback):
-#         print("🎤 Listening for short speech...")
-#         start_time = time.time()
-
-#         while True:
-#             data = audio_q.get()
-#             if recognizer.AcceptWaveform(data):
-#                 result = json.loads(recognizer.Result())
-#                 speech_duration = time.time() - start_time
-
-#                 # Switch to full recording if speech is too long
-#                 if speech_duration > 10:  # Threshold: 5 seconds
-#                     print("⚠️ Long speech detected! Switching to full recording mode...")
-#                     return None  # Indicate long speech mode
-
-#                 print("You said:", result["text"])
-#                 return result["text"]
-
 def record_audio(file_name, duration=10):
-    """Record full speech if the user speaks for long"""
+    """Record speech"""
     import wave
     import pyaudio
 
@@ -115,7 +80,7 @@ def extract_text_response(ai_response):
         # ✅ DEBUG: Print AI response before extraction
         print(f"🔍 RAW AI Response:\n{ai_response}\n")
 
-        # ✅ Improved regex (handles missing "json")
+        # handles missing "json"
         import re
         pattern = re.compile(r"```(?:json)?\s*(.*?)\s*```", re.DOTALL)
         match = pattern.search(ai_response)

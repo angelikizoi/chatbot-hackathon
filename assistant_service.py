@@ -2,7 +2,6 @@ import os
 import json
 from dotenv import load_dotenv
 import openai
-from utilities_service import remove_image, download_image
 
 dotenv_path = os.path.join(os.getcwd(), "venv", "secrets.env")
 load_dotenv(dotenv_path) 
@@ -31,11 +30,7 @@ if not os.path.exists(assistant_file_path):
     assistant = openai.beta.assistants.create(
         name="MPK Technology Assistant",
         instructions=instructions,
-        # tools=[{"type": "file_search"}],
         tools=[{"type": "file_search"}, {"type": "code_interpreter"}],
-        # tool_resources={
-        #     "file_search": {"vector_store_ids": [vector_store.id]}
-        # },
         tool_resources={
             "file_search": {"vector_store_ids": [vector_store.id]},
             "code_interpreter": {"file_ids": [products_file.id]}
@@ -51,8 +46,3 @@ else:
         assistant = json.load(f)
 
 
-def upload_image(openai, url):
-    file_path = download_image(url)
-    file = openai.files.create(file=open(file_path, "rb"), purpose="vision")
-    remove_image(file_path)
-    return file.id

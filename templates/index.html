@@ -179,26 +179,6 @@
     <header>
         <h1>MPK Technology Products</h1>
     </header>
-    <!-- <div class="container">
-        <div class="products">
-            <div class="product">
-                <img src="https://via.placeholder.com/300" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>High-performance laptop with the latest processor and graphics.</p>
-            </div>
-            <div class="product">
-                <img src="https://via.placeholder.com/300" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>Smartphone with advanced camera and long battery life.</p>
-            </div>
-            <div class="product">
-                <img src="https://via.placeholder.com/300" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>Wireless earbuds with noise cancellation and premium sound.</p>
-            </div>
-        </div>
-        <div class="chatbot"> -->
-            <!-- <h2>Chatbot Assistant</h2> -->
             <img class='icon' src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-smart-chatbot-cartoon-clipart-png-image_9015126.png" alt="icon"> <!-- Icon display -->
             <div class="chat-window" id="chat-window">
                 <!-- Chat messages will appear here -->
@@ -221,7 +201,6 @@
         let mediaRecorder;
         let audioChunks = [];
 
-        // Function to add a message to the chat window
         // Function to add a message to the chat window
         function addMessage(role, content) {
             const messageDiv = document.createElement('div');
@@ -392,51 +371,6 @@
             audio.play().catch(error => console.error("Audio playback error:", error));
         }
     
-        // Function to start/stop recording
-        // function toggleRecording() {
-        //     if (!isRecording) {
-        //         navigator.mediaDevices.getUserMedia({ audio: true })
-        //             .then(stream => {
-        //                 mediaRecorder = new MediaRecorder(stream);
-        //                 mediaRecorder.start();
-        //                 isRecording = true;
-        //                 recordButton.textContent = 'Stop Recording';
-        //                 audioChunks = [];
-
-        //                 mediaRecorder.ondataavailable = event => {
-        //                     audioChunks.push(event.data);
-        //                 };
-
-        //                 mediaRecorder.onstop = () => {
-        //                     const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        //                     const audioUrl = URL.createObjectURL(audioBlob);
-        //                     addMessage('user', 'Audio recorded');
-        //                     console.log('Audio URL:', audioUrl);
-
-        //                     // Send audio to the backend (replace with actual API call)
-        //                     const formData = new FormData();
-        //                     console.log(formData)
-        //                     formData.append('audio', audioBlob, 'recording.wav');
-        //                     console.log(formData)
-        //                     fetch('/chat', {
-        //                         method: 'POST',
-        //                         body: formData
-        //                     }).then(response => response.json())
-        //                       .then(data => {
-        //                           addMessage('assistant', data.text_response);
-        //                       });
-        //                 };
-        //             })
-        //             .catch(error => {
-        //                 console.error('Error accessing microphone:', error);
-        //             });
-        //     } else {
-        //         mediaRecorder.stop();
-        //         isRecording = false;
-        //         recordButton.textContent = 'Record';
-        //     }
-        // }
-
         function toggleRecording() {
             if (!isRecording) {
                 navigator.mediaDevices.getUserMedia({ audio: true })
