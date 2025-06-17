@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPK Technology Products</title>
+    <style>
+        body {
+            background-color: #f4f4f4; /* Light gray background */
+            font-family: Arial, sans-serif;
+            color: #333; /* Dark text color */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff; /* Blue header */
+            color: white;
+            padding: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .product {
+            width: 30%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product h3 {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+        .product p {
+            font-size: 16px;
+            color: #666;
+        }
+        .chatbot {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .chatbot h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #007bff;
+        }
+        .chat-window {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            height: 550px;
+            overflow-y: auto;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+        .message {
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #e9ecef;
+            color: #333;
+            margin-right: auto;
+            text-align: left;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .input-container button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .record-button {
+            background-color: #ff4081;
+        }
+        .product-container {
+            display: flex; /* Make the products appear in a row */
+            flex-wrap: wrap; /* Allow wrapping if screen is too small */
+            gap: 15px; /* Add space between products */
+            justify-content: center; /* Center items horizontally */
+        }
+
+        /* Individual product card styling */
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px; /* Set fixed width */
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Product images */
+        .product-card img {
+            width: 100%; /* Ensure responsiveness */
+            max-width: 200px; /* Set max width for smaller images */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Text formatting */
+        .product-card strong {
+            font-size: 16px;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .product-card span {
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .icon {
+            display: block;
+            margin: 15px auto; /* Center the icon horizontally and add margin */
+            width: 150px; /* Set width for the icon */
+            height: 150px; /* Set height for the icon */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>MPK Technology Products</h1>
+    </header>
+    <!-- <div class="container">
+        <div class="products">
+            <div class="product">
+                <img src="https://via.placeholder.com/300" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>High-performance laptop with the latest processor and graphics.</p>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/300" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>Smartphone with advanced camera and long battery life.</p>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/300" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>Wireless earbuds with noise cancellation and premium sound.</p>
+            </div>
+        </div>
+        <div class="chatbot"> -->
+            <!-- <h2>Chatbot Assistant</h2> -->
+            <img class='icon' src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-smart-chatbot-cartoon-clipart-png-image_9015126.png" alt="icon"> <!-- Icon display -->
+            <div class="chat-window" id="chat-window">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-button">Send</button>
+                <button id="record-button" class="record-button">Record</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatWindow = document.getElementById('chat-window');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        const recordButton = document.getElementById('record-button');
+
+        let isRecording = false;
+        let mediaRecorder;
+        let audioChunks = [];
+
+        // Function to add a message to the chat window
+        // Function to add a message to the chat window
+        function addMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', role === 'user' ? 'user-message' : 'bot-message');
+
+            // Convert Markdown to HTML using a simple function
+            messageDiv.innerHTML = `<strong>${role}:</strong> ${convertMarkdownToHTML(content)}`;
+
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to convert Markdown to HTML
+        function convertMarkdownToHTML(markdown) {
+            return markdown
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold (**text**)
+                .replace(/\n/g, '<br>')  // New lines to <br>
+                .replace(/\* (.*?)\n/g, '<li>$1</li>')  // Convert bullet points
+                .replace(/(?:\r\n|\r|\n)/g, '<br>');  // Ensure line breaks
+        }
+
+        // Retrieve thread ID from localStorage
+        let thread_id = localStorage.getItem('thread_id');
+
+        // Get ThreadID if not already stored
+        async function initializeThread() {
+            console.log("🔄 Initializing thread...");
+            if (!thread_id) {
+                try {
+                    console.log("🚀 Fetching new thread ID...");
+                    const response = await fetch('/start', {
+                        method: 'GET',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log("📩 Received data from /start:", data);
+
+                    if (data.thread_id) {
+                        thread_id = data.thread_id;
+                        localStorage.setItem('thread_id', thread_id);  // Store new thread ID
+                        console.log("✅ New thread started:", thread_id);
+                    } else {
+                        console.error("❌ No thread ID received from the server.");
+                    }
+                } catch (error) {
+                    console.error("❌ Error starting chat:", error);
+                }
+            } else {
+                console.log("✅ Using existing thread ID:", thread_id);
+            }
+        }
+
+        // Function to send a message
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) {
+                console.warn("⚠️ No message entered. Skipping send.");
+                return;
+            }
+
+            console.log("📤 Sending message:", message);
+            addMessage('user', message);
+            chatInput.value = '';
+
+            // Ensure thread_id is initialized before sending a message
+            await initializeThread();
+
+            try {
+                console.log("🚀 Sending message to /chat...");
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ thread_id: thread_id, message: { text: message } })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log("📩 Received data from /chat:", data);
+
+
+                // If AI fails, reset thread and retry once
+                if (data.response && data.response.includes("problem answering this")) {
+                    console.warn("⚠️ Assistant failed. Resetting thread and retrying...");
+                    localStorage.removeItem('thread_id');
+                    thread_id = null;
+                    await initializeThread();  // Get a new thread
+                    return sendMessage();  // Retry message with new thread
+                }
+
+                if (!thread_id && data.thread_id) {
+                    thread_id = data.thread_id;
+                    localStorage.setItem('thread_id', thread_id); // Store in localStorage
+                }
+
+                if (data.text_response) {
+                    addMessage('assistant', marked.parse(data.text_response), true);
+                }
+
+                if (data.products && data.products.length > 0) {
+                    displayProductSlideshow(data.products);
+                }
+
+                if (data.speech_response) {
+                    playAudioResponse(data.speech_response);
+                }
+            } catch (error) {
+                console.error("❌ Error sending message:", error);
+            }
+        }
+
+        // Ensure the thread is initialized when the page loads
+        initializeThread();
+
+        function displayProductSlideshow(products) {
+            const chatWindow = document.getElementById('chat-window');
+
+            // ✅ Create a container to hold all products
+            let productContainer = document.createElement('div');
+            productContainer.classList.add('product-container');
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product-card'); // Use new styling
+
+                productDiv.innerHTML = `
+                    <img src="${product['Product Picture']}" alt="${product['Product Name']}">
+                    <h3>${product['Product Name']}</h3>
+                    <p><strong style="color: green;">${product['Price']}</strong></p>
+                    <p>${product['Description']}</p>
+                `;
+
+                productContainer.appendChild(productDiv);
+            });
+
+            chatWindow.appendChild(productContainer); // ✅ Append the container
+        }
+
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to bottom
+
+        // Function to play audio responces
+        function playAudioResponse(base64Audio) {
+            if (!base64Audio) {
+                console.error("❌ No audio data received.");
+                return;
+            }
+
+            // Convert Base64 to Blob
+            const byteCharacters = atob(base64Audio);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: "audio/wav" });
+
+            // Create an ObjectURL and play the audio
+            const audioURL = URL.createObjectURL(blob);
+            const audio = new Audio(audioURL);
+            audio.playbackRate = 1.5;
+            audio.play().catch(error => console.error("Audio playback error:", error));
+        }
+    
+        // Function to start/stop recording
+        // function toggleRecording() {
+        //     if (!isRecording) {
+        //         navigator.mediaDevices.getUserMedia({ audio: true })
+        //             .then(stream => {
+        //                 mediaRecorder = new MediaRecorder(stream);
+        //                 mediaRecorder.start();
+        //                 isRecording = true;
+        //                 recordButton.textContent = 'Stop Recording';
+        //                 audioChunks = [];
+
+        //                 mediaRecorder.ondataavailable = event => {
+        //                     audioChunks.push(event.data);
+        //                 };
+
+        //                 mediaRecorder.onstop = () => {
+        //                     const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        //                     const audioUrl = URL.createObjectURL(audioBlob);
+        //                     addMessage('user', 'Audio recorded');
+        //                     console.log('Audio URL:', audioUrl);
+
+        //                     // Send audio to the backend (replace with actual API call)
+        //                     const formData = new FormData();
+        //                     console.log(formData)
+        //                     formData.append('audio', audioBlob, 'recording.wav');
+        //                     console.log(formData)
+        //                     fetch('/chat', {
+        //                         method: 'POST',
+        //                         body: formData
+        //                     }).then(response => response.json())
+        //                       .then(data => {
+        //                           addMessage('assistant', data.text_response);
+        //                       });
+        //                 };
+        //             })
+        //             .catch(error => {
+        //                 console.error('Error accessing microphone:', error);
+        //             });
+        //     } else {
+        //         mediaRecorder.stop();
+        //         isRecording = false;
+        //         recordButton.textContent = 'Record';
+        //     }
+        // }
+
+        function toggleRecording() {
+            if (!isRecording) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorder = new MediaRecorder(stream); // No need for MIME conversion
+                        mediaRecorder.start();
+                        isRecording = true;
+                        recordButton.textContent = 'Stop Recording';
+                        audioChunks = [];
+
+                        mediaRecorder.ondataavailable = event => {
+                            audioChunks.push(event.data);
+                        };
+
+                        mediaRecorder.onstop = async () => {
+                            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' }); // Keep original format
+                            const formData = new FormData();
+                            formData.append('audio', audioBlob, 'recording.webm'); // Save as webm or wav
+
+                            // Send the file to the backend
+                            fetch('/upload-audio', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("✅ File saved:", data.file_path);
+                                sendAudioMessage(data.file_path);  // Send file path to chat API
+                            })
+                            .catch(error => console.error('❌ Error uploading audio:', error));
+                        };
+                    })
+                    .catch(error => {
+                        console.error('❌ Error accessing microphone:', error);
+                    });
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                recordButton.textContent = 'Record';
+            }
+}
+
+        function sendAudioMessage(base64Audio) {
+            if (!thread_id) {
+                thread_id = localStorage.getItem('thread_id');  // Retrieve stored thread ID
+            }
+            addMessage('user', '🎙️ Sent an audio message.');
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    thread_id: thread_id, 
+                    message: { audio: base64Audio } 
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.thread_id && !thread_id) {
+                    thread_id = data.thread_id; 
+                    localStorage.setItem('thread_id', thread_id); // Store in localStorage
+                }
+
+                if (data.transcription) {
+                    addMessage('user', `📄 Transcribed: ${data.transcription}`); // Show the transcribed text
+                }
+
+                if (data.text_response) {
+                    addMessage('assistant', data.text_response); // Show AI response
+                }
+
+                if (data.products && data.products.length > 0) {
+                    displayProductSlideshow(data.products); // Show product recommendations
+                }
+
+                if (data.speech_response) {
+                    playAudioResponse(data.speech_response); // Play AI-generated speech
+                }
+            })
+            .catch(error => console.error('❌ Error sending audio message:', error));
+        }
+
+
+        // Function to Add Audio Playback in Chat
+        function addAudioMessage(role, audioUrl) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', role === 'user' ? 'user-message' : 'bot-message');
+
+            messageDiv.innerHTML = `
+                <strong>${role}:</strong> 
+                <audio controls>
+                    <source src="${audioUrl}" type="audio/wav">
+                    Your browser does not support the audio tag.
+                </audio>
+            `;
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        recordButton.addEventListener('click', toggleRecording);
+    </script>
+</body>
+</html>
